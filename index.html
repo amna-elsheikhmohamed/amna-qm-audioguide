@@ -1,0 +1,24 @@
+---
+layout: master
+---
+
+<div class="home">
+  <p>{{ site.index_page_text }}</p>
+  
+  <ul class="post-list">
+    {% assign pages = site.pages | sort: 'page_rank' %}
+    {% for my_page in pages %}
+      {% if my_page.section_title and my_page.type == 'stop' %}
+        <li class="post-item">
+          <a class="post-link" href="{{ my_page.url | prepend: site.baseurl }}" 
+             style="background-image: url('{{ my_page.background_image | prepend: site.baseurl }}');">
+            <div class="overlay">
+              <span class="post-title">{{ my_page.section_title }}</span>
+            </div>
+          </a>
+          <img src="{{ my_page.background_image | prepend: site.baseurl }}" alt="Image for {{ my_page.section_title }}" style="width:100%;"/>
+        </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+</div>
